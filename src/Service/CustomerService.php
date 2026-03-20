@@ -133,6 +133,8 @@ class CustomerService
         $customerGroupId = $request->request->get('customerGroupId');
         if (!empty($customerGroupId)) {
             $params['groupId'] = $customerGroupId;
+        } else {
+            $params['groupId'] = $this->salesChannelService->getDefaultSalesChannel()->getCustomerGroupId();
         }
 
         return $params;

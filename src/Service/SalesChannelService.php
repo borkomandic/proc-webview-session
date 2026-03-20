@@ -40,9 +40,15 @@ class SalesChannelService
     {
         $salesChannelId = $this->config->get('PCWebViewCustomerSession.config.salesChannelId');
 
-        return $this->salesChannelRepository->search(
+        $salesChannel = $this->salesChannelRepository->search(
             new Criteria([$salesChannelId]),
             Context::createDefaultContext()
         )->first();
+
+        if ($salesChannel === null) {
+            throw new \RuntimeException('PCWebViewCustomerSession: configured salesChannelId not found. Check plugin configuration.');
+        }
+
+        return $salesChannel;
     }
 }
