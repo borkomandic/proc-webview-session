@@ -63,6 +63,10 @@ class CustomerService
             $upsertCustomerData['defaultBillingAddressId']  = $this->config->get('PCWebViewCustomerSession.config.defaultAddressId');
             $upsertCustomerData['defaultShippingAddressId'] = $this->config->get('PCWebViewCustomerSession.config.defaultAddressId');
 
+            if (!isset($upsertCustomerData['groupId'])) {
+                $upsertCustomerData['groupId'] = $this->salesChannelService->getDefaultSalesChannel()->getCustomerGroupId();
+            }
+
             $this->customerRepository->upsert([$upsertCustomerData], $context);
             $this->customerPostCreatedService->customerPostCreatedActions($upsertCustomerData['id'], $context);
             $writeStatus = self::STATUS_CREATED;
@@ -131,10 +135,8 @@ class CustomerService
         ];
 
         $customerGroupId = $request->request->get('customerGroupId');
-        if (!empty($customerGroupId)) {
+        if (!empty($customerGroupId) && Uuid::isValid($customerGroupId)) {
             $params['groupId'] = $customerGroupId;
-        } else {
-            $params['groupId'] = $this->salesChannelService->getDefaultSalesChannel()->getCustomerGroupId();
         }
 
         return $params;
