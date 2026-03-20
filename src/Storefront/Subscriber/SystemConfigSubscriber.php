@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace ProCoders\WebViewCustomerSession\Storefront\Subscriber;
+namespace ProCoders\WebViewSession\Storefront\Subscriber;
 
-use ProCoders\WebViewCustomerSession\Service\CustomerService;
+use ProCoders\WebViewSession\Service\CustomerService;
 use Shopware\Core\System\SystemConfig\Event\SystemConfigMultipleChangedEvent;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -19,7 +19,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class SystemConfigSubscriber implements EventSubscriberInterface
 {
-    private const CONFIG_PREFIX = 'PCWebViewCustomerSession.config.';
+    private const CONFIG_PREFIX = 'ProcWebViewSession.config.';
 
     public function __construct(
         private readonly SystemConfigService $systemConfigService,

@@ -6,25 +6,25 @@
 
     <services>
 
-        <service id="ProCoders\WebViewCustomerSession\Service\HttpResponseService" public="true"/>
+        <service id="ProCoders\WebViewSession\Service\HttpResponseService" public="true"/>
 
-        <service id="ProCoders\WebViewCustomerSession\Service\SalesChannelService" public="true">
+        <service id="ProCoders\WebViewSession\Service\SalesChannelService" public="true">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <argument type="service" id="sales_channel.repository"/>
             <argument type="service" id="Shopware\Core\System\SalesChannel\Context\CachedSalesChannelContextFactory"/>
         </service>
 
-        <service id="ProCoders\WebViewCustomerSession\Service\CustomerPostCreatedService" public="true"/>
+        <service id="ProCoders\WebViewSession\Service\CustomerPostCreatedService" public="true"/>
 
-        <service id="ProCoders\WebViewCustomerSession\Service\CustomerService" public="true">
+        <service id="ProCoders\WebViewSession\Service\CustomerService" public="true">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <argument type="service" id="Doctrine\DBAL\Connection"/>
             <argument type="service" id="Shopware\Core\Checkout\Customer\SalesChannel\AccountService"/>
             <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack"/>
             <argument type="service" id="customer.repository"/>
             <argument type="service" id="language.repository"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\SalesChannelService"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CustomerPostCreatedService"/>
+            <argument type="service" id="ProCoders\WebViewSession\Service\SalesChannelService"/>
+            <argument type="service" id="ProCoders\WebViewSession\Service\CustomerPostCreatedService"/>
         </service>
 
     </services>

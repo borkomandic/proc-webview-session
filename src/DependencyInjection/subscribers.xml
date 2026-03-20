@@ -6,16 +6,16 @@
 
     <services>
 
-        <service id="ProCoders\WebViewCustomerSession\Storefront\Subscriber\PCSessionHandlerSubscriber">
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CustomerService"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\SalesChannelService"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\HttpResponseService"/>
+        <service id="ProCoders\WebViewSession\Storefront\Subscriber\ProcSessionHandlerSubscriber">
+            <argument type="service" id="ProCoders\WebViewSession\Service\CustomerService"/>
+            <argument type="service" id="ProCoders\WebViewSession\Service\SalesChannelService"/>
+            <argument type="service" id="ProCoders\WebViewSession\Service\HttpResponseService"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="ProCoders\WebViewCustomerSession\Storefront\Subscriber\SystemConfigSubscriber">
+        <service id="ProCoders\WebViewSession\Storefront\Subscriber\SystemConfigSubscriber">
             <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CustomerService"/>
+            <argument type="service" id="ProCoders\WebViewSession\Service\CustomerService"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

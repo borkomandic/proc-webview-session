@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ProCoders\WebViewCustomerSession\Service;
+namespace ProCoders\WebViewSession\Service;
 
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
@@ -27,7 +27,7 @@ class SalesChannelService
 
     public function createSalesChannelContextFromCustomerId(string $customerId): SalesChannelContext
     {
-        $salesChannelId = $this->config->get('PCWebViewCustomerSession.config.salesChannelId');
+        $salesChannelId = $this->config->get('ProcWebViewSession.config.salesChannelId');
 
         return $this->salesChannelContextFactory->create(
             Uuid::randomHex(),
@@ -38,7 +38,7 @@ class SalesChannelService
 
     public function getDefaultSalesChannel(): SalesChannelEntity
     {
-        $salesChannelId = $this->config->get('PCWebViewCustomerSession.config.salesChannelId');
+        $salesChannelId = $this->config->get('ProcWebViewSession.config.salesChannelId');
 
         $salesChannel = $this->salesChannelRepository->search(
             new Criteria([$salesChannelId]),
@@ -46,7 +46,7 @@ class SalesChannelService
         )->first();
 
         if ($salesChannel === null) {
-            throw new \RuntimeException('PCWebViewCustomerSession: configured salesChannelId not found. Check plugin configuration.');
+            throw new \RuntimeException('ProcWebViewSession: configured salesChannelId not found. Check plugin configuration.');
         }
 
         return $salesChannel;

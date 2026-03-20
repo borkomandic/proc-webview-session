@@ -6,9 +6,9 @@
 
     <services>
 
-        <service id="ProCoders\WebViewCustomerSession\Administration\Controller\PCCustomerController" public="true">
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CustomerService"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\HttpResponseService"/>
+        <service id="ProCoders\WebViewSession\Administration\Controller\ProcCustomerController" public="true">
+            <argument type="service" id="ProCoders\WebViewSession\Service\CustomerService"/>
+            <argument type="service" id="ProCoders\WebViewSession\Service\HttpResponseService"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

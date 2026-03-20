@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ProCoders\WebViewCustomerSession\Service;
+namespace ProCoders\WebViewSession\Service;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 

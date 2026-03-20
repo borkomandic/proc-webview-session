@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ProCoders\WebViewCustomerSession\Service;
+namespace ProCoders\WebViewSession\Service;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Checkout\Customer\SalesChannel\AccountService;
@@ -60,8 +60,8 @@ class CustomerService
             }
         } else {
             $upsertCustomerData['password']                 = $this->generatePassword(12);
-            $upsertCustomerData['defaultBillingAddressId']  = $this->config->get('PCWebViewCustomerSession.config.defaultAddressId');
-            $upsertCustomerData['defaultShippingAddressId'] = $this->config->get('PCWebViewCustomerSession.config.defaultAddressId');
+            $upsertCustomerData['defaultBillingAddressId']  = $this->config->get('ProcWebViewSession.config.defaultAddressId');
+            $upsertCustomerData['defaultShippingAddressId'] = $this->config->get('ProcWebViewSession.config.defaultAddressId');
 
             if (!isset($upsertCustomerData['groupId'])) {
                 $upsertCustomerData['groupId'] = $this->salesChannelService->getDefaultSalesChannel()->getCustomerGroupId();
@@ -99,7 +99,7 @@ class CustomerService
 
     public function getFrontendCookieToken(): ?string
     {
-        $cookieName = $this->config->get('PCWebViewCustomerSession.config.frontendTokenCookieName');
+        $cookieName = $this->config->get('ProcWebViewSession.config.frontendTokenCookieName');
         return $this->requestStack->getCurrentRequest()->cookies->get($cookieName) ?? null;
     }
 
@@ -125,7 +125,7 @@ class CustomerService
     {
         $params = [
             'id'             => $this->appUserIdToSwId($request->request->get('appUserId')),
-            'salesChannelId' => $this->config->get('PCWebViewCustomerSession.config.salesChannelId'),
+            'salesChannelId' => $this->config->get('ProcWebViewSession.config.salesChannelId'),
             'languageId'     => $this->getLanguageIdByCode($request->request->get('languageCode'), $context),
             'customerNumber' => $request->request->get('appUserId'),
             'firstName'      => $request->request->get('firstName'),

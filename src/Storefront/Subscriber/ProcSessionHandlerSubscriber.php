@@ -1,11 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace ProCoders\WebViewCustomerSession\Storefront\Subscriber;
+namespace ProCoders\WebViewSession\Storefront\Subscriber;
 
-use ProCoders\WebViewCustomerSession\Service\CustomerService;
-use ProCoders\WebViewCustomerSession\Service\HttpResponseService;
-use ProCoders\WebViewCustomerSession\Service\SalesChannelService;
+use ProCoders\WebViewSession\Service\CustomerService;
+use ProCoders\WebViewSession\Service\HttpResponseService;
+use ProCoders\WebViewSession\Service\SalesChannelService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -24,7 +25,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  *
  * @author Borko Mandić — ProCoders (procode.rs)
  */
-class PCSessionHandlerSubscriber implements EventSubscriberInterface
+class ProcSessionHandlerSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly CustomerService     $customerService,
@@ -35,8 +36,26 @@ class PCSessionHandlerSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
+            KernelEvents::REQUEST  => ['onKernelRequest', 30],
             KernelEvents::RESPONSE => 'onKernelResponse',
         ];
+    }
+
+    public function onKernelRequest(RequestEvent $event): void
+    {
+        $request = $event->getRequest();
+        $route   = $request->get('_route');
+
+        // Only act on frontend routes
+        if (!$route || !str_starts_with($route, 'frontend.')) {
+            return;
+        }
+
+        $cookieToken = $this->customerService->getFrontendCookieToken();
+
+        if ($cookieToken) {
+            $request->headers->set('sw-context-token', $cookieToken);
+        }
     }
 
     public function onKernelResponse(ResponseEvent $event): void
@@ -69,7 +88,7 @@ class PCSessionHandlerSubscriber implements EventSubscriberInterface
         // No cookie token present — app has not yet injected the session cookie
         if (!$cookieToken) {
             $this->httpResponseService->returnHttpResponse(401,
-                'No sw-context-token cookie found. Initialize the session via POST /api/pc-webview-customer.');
+                'No sw-context-token cookie found. Initialize the session via POST /api/proc-webview-customer.');
         }
 
         // Check whether the cookie token maps to an active customer session in DB
@@ -82,6 +101,6 @@ class PCSessionHandlerSubscriber implements EventSubscriberInterface
 
         // Cookie token not found in DB or has no customer — session is invalid or expired
         $this->httpResponseService->returnHttpResponse(401,
-            'No active customer session found for the provided cookie token. Re-initialize via POST /api/pc-webview-customer.');
+            'No active customer session found for the provided cookie token. Re-initialize via POST /api/proc-webview-customer.');
     }
 }
