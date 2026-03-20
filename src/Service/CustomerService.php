@@ -17,9 +17,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * Manages customer upsert and session token operations for the WebView flow.
  *
  * API request field mapping:
- *   appUserId    — unique user identifier from the mobile app
- *   companyId    — company/group identifier from the mobile app
- *   email        — customer email
+ *   appUserId       — unique user identifier from the mobile app
+ *   customerGroupId — (optional) Shopware customer group UUID; uses default group if omitted
+ *   email           — customer email
  *   firstName    — customer first name
  *   lastName     — customer last name
  *   languageCode — BCP 47 language code (e.g. "hr-HR")
