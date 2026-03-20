@@ -8,17 +8,7 @@
 
         <service id="ProCoders\WebViewCustomerSession\Administration\Controller\PCCustomerController" public="true">
             <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CustomerService"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CompanyService"/>
             <argument type="service" id="ProCoders\WebViewCustomerSession\Service\HttpResponseService"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
-        <service id="ProCoders\WebViewCustomerSession\Administration\Controller\PCCompanyController" public="true">
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CompanyService"/>
-            <argument type="service" id="Symfony\Contracts\EventDispatcher\EventDispatcherInterface"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\SalesChannelService"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
