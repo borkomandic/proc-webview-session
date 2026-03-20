@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>General</title>
+
+        <input-field type="text">
+            <name>frontendTokenCookieName</name>
+            <label>SW Context Token Cookie Name</label>
+            <helpText>Name of the cookie the mobile app injects into the WebView containing the sw-context-token. Required for all storefront requests.</helpText>
+        </input-field>
+
+        <component name="sw-entity-single-select">
+            <name>salesChannelId</name>
+            <entity>sales_channel</entity>
+            <labelProperty>name</labelProperty>
+            <label>Sales Channel</label>
+        </component>
+    </card>
+
+    <card>
+        <title>Customer Defaults</title>
+
+        <input-field type="text">
+            <name>defaultAddressId</name>
+            <label>Default Customer Address ID</label>
+            <helpText>UUID of the default customer_address entity assigned as default billing and shipping address for new customers.</helpText>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Debugging</title>
+
+        <input-field type="bool">
+            <name>autoLogInEnabled</name>
+            <label>Trigger session cookie on Save</label>
+            <helpText>Toggle ON and save to generate a session cookie for the selected customer. Resets to OFF automatically. Use for browser-based WebView testing.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <component name="sw-entity-single-select">
+            <name>autoLogInCustomerId</name>
+            <entity>customer</entity>
+            <labelProperty>firstName</labelProperty>
+            <label>Customer for Debug Login</label>
+        </component>
+    </card>
+
+</config>

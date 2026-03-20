@@ -1,0 +1,35 @@
+{
+    "name": "pro-coders/pc-webview-customer-session",
+    "description": "WebView customer session sharing between mobile app and Shopware storefront",
+    "version": "v1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Borko Mandić — ProCoders",
+            "email": "borkomandic@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ProCoders\\WebViewCustomerSession\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "ProCoders\\WebViewCustomerSession\\PCWebViewCustomerSession",
+        "plugin-icon": "src/Resources/public/plugin.png",
+        "copyright": "(c) by ProCoders",
+        "label": {
+            "en-GB": "PC WebView Customer Session"
+        },
+        "description": {
+            "en-GB": "WebView customer session sharing between mobile app and Shopware storefront"
+        },
+        "manufacturerLink": {
+            "en-GB": "https://procode.rs/"
+        },
+        "supportLink": {
+            "en-GB": "https://procode.rs/"
+        }
+    }
+}
