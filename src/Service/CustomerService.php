@@ -119,9 +119,8 @@ class CustomerService
 
     private function mapCustomerParams(Request $request, Context $context): array
     {
-        return [
+        $params = [
             'id'             => $this->appUserIdToSwId($request->request->get('appUserId')),
-            'groupId'        => md5($request->request->get('companyId')),
             'salesChannelId' => $this->config->get('PCWebViewCustomerSession.config.salesChannelId'),
             'languageId'     => $this->getLanguageIdByCode($request->request->get('languageCode'), $context),
             'customerNumber' => $request->request->get('appUserId'),
@@ -130,6 +129,13 @@ class CustomerService
             'email'          => $request->request->get('email'),
             'accountType'    => 'private',
         ];
+
+        $customerGroupId = $request->request->get('customerGroupId');
+        if (!empty($customerGroupId)) {
+            $params['groupId'] = $customerGroupId;
+        }
+
+        return $params;
     }
 
     private function appUserIdToSwId(string $appUserId): string
