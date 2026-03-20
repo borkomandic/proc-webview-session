@@ -27,12 +27,5 @@
             <argument type="service" id="ProCoders\WebViewCustomerSession\Service\CustomerPostCreatedService"/>
         </service>
 
-        <service id="ProCoders\WebViewCustomerSession\Service\CompanyService" public="true">
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
-            <argument type="service" id="customer_group.repository"/>
-            <argument type="service" id="Symfony\Contracts\EventDispatcher\EventDispatcherInterface"/>
-            <argument type="service" id="ProCoders\WebViewCustomerSession\Service\SalesChannelService"/>
-        </service>
-
     </services>
 </container>
