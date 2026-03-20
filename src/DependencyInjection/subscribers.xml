@@ -19,10 +19,5 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="ProCoders\WebViewCustomerSession\Storefront\Subscriber\BusinessEventCollectorSubscriber">
-            <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventCollector"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-
     </services>
 </container>
